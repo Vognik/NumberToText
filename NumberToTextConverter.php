@@ -1,7 +1,6 @@
-<?php       
-
-echo 22;
+<?php        
     function convertNumber($number, $lang, $isRecursiveFromThousand = false) {
+        $langs = array("ua", "en", "ru");
         $words = array(
             "ua" => array("negative" => "мінус ", 0 => "нуль", 1 => "один", "1th" => "одна", 2 => "два", "2th" => "дві", 3 => "три", 4 => "чотири", 5 => "п'ять", 6 => "шість", 7 => "сім", 8 => "вісім", 9 => "дев'ять", 10 => "десять", 11 => "одинадцять", 12 => "дванадцять", 13 => "тринадцять", 14 => "чотирнадцять", 15 => "п'ятнадцять", 16 => "шістнадцять", 17 => "сімнадцять", 18 => "вісімнадцять", 19 => "дев'ятнадцять", 20 => "двадцять", 30 => "тридцять", 40 => "сорок", 50 => "п'ятдесят", 60 => "шістдесят", 70 => "сімдесят", 80 => "вісімдесят", 90 => "дев'яносто", 100 => "сто", 200 => "двісті", 300 => "триста", 400 => "чотириста", 500 => "п'ятсот", 600 => "шістсот", 700 => "сімсот", 800 => "вісімсот", 900 => "дев'ятсот", 1001 => "тисяча", 1002 => "тисячі", 1003 => "тисяч", "m1" => "мільйон", "m2" => "мільйона", "m3" => "мільйонів", "conc" => " ", "conc2" => " ", "error" => "Помилка<br> Число має бути цілим в діапазоні від -", "to" => "до"),
             "en" => array("negative" => "negative ", 0 => "zero", 1 => "one", "1th" => "one", 2 => "two", "2th" => "two", 3 => "three", 4 => "four", 5 => "five", 6 => "six", 7 => "seven", 8 => "eight", 9 => "nine", 10 => "ten", 11 => "eleven", 12 => "twelve", 13 => "thirteen", 14 => "fourteen", 15 => "fifteen", 16 => "sixteen", 17 => "seventeen", 18 => "eighteen", 19 => "nineteen", 20 => "twenty", 30 => "thirty", 40 => "forty", 50 => "fifty", 60 => "sixty", 70 => "seventy", 80 => "eighty", 90 => "ninety", 100 => "one hundred", 200 => "two hundred", 300 => "three hundred", 400 => "four hundred", 500 => "five hundred", 600 => "six hundred", 700 => "seven hundred", 800 => "eight hundred", 900 => "nine hundred", 1001 => "thousand", 1002 => "thousand", 1003 => "thousand", "m1" => "million", "m2" => "million",  "m3" => "million", "conc" => "-", "conc2" => " and ", "error" => "ERROR<br> Number must be an integer from -", "to" => "to"),
@@ -10,12 +9,14 @@ echo 22;
 
         if (!isset($words[$lang])) {
             echo ("Language ".$lang." is not supported. Available languages:<br>".join("<br>", $langs));
+            exit;
         }
         
         $maxSize = pow(10,9);
         if (empty($number)) {
             return $words[$lang][0];
         } 
+        
         $number = intval($number);
         if (abs($number) < $maxSize) {            
             switch ($number) {
