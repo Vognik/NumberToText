@@ -1,6 +1,5 @@
 <?php
   abstract class Converter {
-    
     public $words();
     public function convertNumber($number) {
       $maxSize = pow(10,9);
