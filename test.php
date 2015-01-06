@@ -1,6 +1,6 @@
 <?php
   abstract class Converter {
-    public $words();
+    public $words;
     public function convertNumber($number) {
       $maxSize = pow(10,9);
       if (empty($number)) return $words[$lang][0];
