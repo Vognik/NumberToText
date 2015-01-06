@@ -1,6 +1,6 @@
 <?php
   abstract class Converter {
-    private static $words;
+    public static $words;
     public static function convertNumber($number, $isRecursiveFromThousand = false) {
       $maxSize = pow(10,9);
       if (empty($number)) return self::$words[0];
